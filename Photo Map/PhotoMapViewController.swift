@@ -23,14 +23,37 @@ class PhotoMapViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func didTapCameraButton() {
+        let imagePickerViewController = UIImagePickerController()
+        imagePickerViewController.delegate = self
+        imagePickerViewController.allowsEditing = true
+        imagePickerViewController.sourceType = UIImagePickerControllerSourceType.Camera
+        presentViewController(imagePickerViewController, animated: true, completion: nil)
     }
-    */
+}
 
+extension PhotoMapViewController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        println("dismiss picker view controller")
+        
+        let originalImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let editedImage = info[UIImagePickerControllerEditedImage] as UIImage
+        
+        // launch LocationsViewController to tag with a location
+        performSegueWithIdentifier("AddLocationSegue", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "AddLocationSegue" {
+            println("AddLocationSegue segue worked")
+            let locationsViewController = segue.destinationViewController as LocationsViewController
+        }
+        
+    }
+}
+
+extension PhotoMapViewController: UINavigationControllerDelegate {
+    
 }
