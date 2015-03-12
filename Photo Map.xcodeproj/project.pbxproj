@@ -15,6 +15,8 @@
 		228D477019F5DAFF00DE9903 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228D476F19F5DAFF00DE9903 /* LocationsViewController.swift */; };
 		22BB9BD519F5DD21000048C2 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB9BD419F5DD21000048C2 /* LocationCell.swift */; };
 		B2CD157BA08A8D660CF7C256 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 730E2E8CC4461B1A4DAF2DD6 /* libPods.a */; };
+		BB00BD701AB116B400BF45AE /* PhotoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00BD6F1AB116B400BF45AE /* PhotoMapViewController.swift */; };
+		BB00BD721AB1179800BF45AE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB00BD711AB1179800BF45AE /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		22BB9BD419F5DD21000048C2 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		3798A91E53EF9F5C294484AF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		730E2E8CC4461B1A4DAF2DD6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB00BD6F1AB116B400BF45AE /* PhotoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoMapViewController.swift; sourceTree = "<group>"; };
+		BB00BD711AB1179800BF45AE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F5BE47FFEDE0C18F03BCCC32 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB00BD721AB1179800BF45AE /* MapKit.framework in Frameworks */,
 				B2CD157BA08A8D660CF7C256 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				228D476F19F5DAFF00DE9903 /* LocationsViewController.swift */,
+				BB00BD6F1AB116B400BF45AE /* PhotoMapViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -152,6 +158,7 @@
 		C53175EB32E8EEC8585BFFB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB00BD711AB1179800BF45AE /* MapKit.framework */,
 				730E2E8CC4461B1A4DAF2DD6 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -294,6 +301,7 @@
 			files = (
 				22BB9BD519F5DD21000048C2 /* LocationCell.swift in Sources */,
 				228D474F19F5DA9F00DE9903 /* AppDelegate.swift in Sources */,
+				BB00BD701AB116B400BF45AE /* PhotoMapViewController.swift in Sources */,
 				228D477019F5DAFF00DE9903 /* LocationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
