@@ -8,26 +8,41 @@
 
 import UIKit
 
-class LocationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+protocol LocationsViewControllerDelegate: class {
+    func locationsViewController(locationsViewController: LocationsViewController, didSelectLocation location: PhotoMapAnnotation)
+}
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+class LocationsViewController: UIViewController, UISearchBarDelegate {
+
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.dataSource = self
+            tableView.delegate = self
+        }
+    }
+    @IBOutlet weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+        }
+    }
+    
+    weak var delegate: LocationsViewControllerDelegate?
     
     var results: NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.dataSource = self
-        tableView.delegate = self
-        searchBar.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+}
+
+extension LocationsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count
     }
@@ -39,7 +54,26 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         return cell
     }
-    
+}
+
+extension LocationsViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // This is the selected venue
+        var venue = results[indexPath.row] as NSDictionary
+        
+        var lat = venue.valueForKeyPath("location.lat") as Double
+        var lng = venue.valueForKeyPath("location.lng") as Double
+        
+        var latString = "\(lat)"
+        var lngString = "\(lng)"
+        
+        println(latString + " " + lngString)
+
+        delegate?.locationsViewController(self, didSelectLocation: PhotoMapAnnotation(latitude: lat, longitude: lng))
+    }
+}
+
+extension LocationsViewController: UISearchBarDelegate {
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         var newText = NSString(string: searchBar.text).stringByReplacingCharactersInRange(range, withString: text)
         fetchLocations(newText)
@@ -61,27 +95,6 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.tableView.reloadData()
             }
         }
-    }
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        var cell = sender as UITableViewCell
-        var indexPath = tableView.indexPathForCell(cell)!
-        
-        // This is the selected venue
-        var venue = results[indexPath.row] as NSDictionary
-        
-        var lat = venue.valueForKeyPath("location.lat") as NSNumber
-        var lng = venue.valueForKeyPath("location.lng") as NSNumber
-        
-        var latString = "\(lat)"
-        var lngString = "\(lng)"
-        
-        println(latString + " " + lngString)
     }
 
 }

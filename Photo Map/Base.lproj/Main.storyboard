@@ -128,6 +128,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Photo Map" id="lNQ-oX-rpI"/>
                     <connections>
+                        <outlet property="mapView" destination="NB4-BV-p6R" id="vwN-sZ-utk"/>
                         <segue destination="eZf-Nb-6PU" kind="show" identifier="AddLocationSegue" id="Qkw-4A-9er"/>
                     </connections>
                 </viewController>
